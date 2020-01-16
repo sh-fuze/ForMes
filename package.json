@@ -18,5 +18,18 @@
   "homepage": "https://github.com/sh-fuze/ForMes#readme",
   "dependencies": {
     "@finelets/hyper-rest": "^3.0.14"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chance": "^1.0.18",
+    "mocha": "^6.1.4",
+    "mocha-mongoose": "^1.2.0",
+    "proxyquire": "^2.1.0",
+    "should": "^13.2.3",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0",
+    "sinon-stub-promise": "^4.0.0",
+    "supertest": "^4.0.2"
   }
 }
