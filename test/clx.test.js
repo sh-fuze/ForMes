@@ -8,6 +8,14 @@ describe('TexTrade', function () {
 		err = new Error('any error message');
 	})
 
+	describe('js', () => {
+		it('array append', () => {
+			let b = ['c', 'd'],
+			c = ['a', 'b', ...b]
+			expect(c).eql(['a', 'b', 'c', 'd'])
+		})
+	})
+
 	describe('Server', () => {
 		describe('biz - 业务', () => {
 			const code = 'foo'
