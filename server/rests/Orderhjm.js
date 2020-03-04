@@ -1,4 +1,27 @@
  
+// const entity = require('../biz/Customer');
+
+const list = function (query) {
+    const data = [
+        {orderNum: 10},
+        {orderNum: 20}
+    ];
+    return Promise.resolve({
+        items: data
+    })
+};
+
+module.exports = {
+    url: '/formes/api/orderhjm',
+    rests: [
+        {
+            type: 'query',
+            element: 'Orderhjm',
+            handler: list
+        }
+    ]
+}
+/*
 
 const list = function (query) {
     const data = [
@@ -10,6 +33,7 @@ const list = function (query) {
     })
 };
 
+
 module.exports = {
     url: '/formes/api/Orderhjm',
     rests: [
@@ -20,3 +44,4 @@ module.exports = {
         }
     ]
 }
+*/

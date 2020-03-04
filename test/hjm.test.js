@@ -41,12 +41,12 @@ describe('TexTrade', function () {
 
 			beforeEach(function (done) {
 				__v = 0
-				console.log('123');
+				console.log('beforeEach clearDB');
 				return clearDB(done);
 			})
 
 			describe('order -  订单',()=>{
-				const orderNum = 1,
+				const orderNum = 10,
 					//address = 'address',
 					link = 'link',
 					tags = 'tags'
@@ -65,16 +65,18 @@ describe('TexTrade', function () {
 		  
 
 					 
-				/*
+				/**/
 				 
  	 	beforeEach(() => {
-				 	//toCreate = {code}
+				 	toCreate = {code}
 					//Customer
-					//schema = require('../db/Orderhjm');
+					schema = require('../db/Orderhjm');
 					//schema = require('../db/Customer');
-				   // testTarget = require('../server/biz/Orderhjm');
+					testTarget = require('../server/biz/Orderhjm');
+					
+					console.log('beforeEach require ');
 					//testTarget = require('../server/biz/Customer');
-				 })*/
+				 })
 		
 				
 
@@ -94,18 +96,18 @@ describe('TexTrade', function () {
 
 
 				it('create', () => {
-					//return testTarget.create({code, orderNum , link, tags})
-					//	.then(doc => {
-					//		return schema.findById(doc.id)
-					//	})
-					//	.then(doc => {
-							//doc = doc.toJSON()
-						//	expect(doc.code).eql(code)
-						//	expect(doc.orderNum).eql(orderNum)
+					return testTarget.create({code, orderNum , link, tags})
+						.then(doc => {
+							return schema.findById(doc.id)
+						})
+						.then(doc => {
+							doc = doc.toJSON()
+							expect(doc.code).eql(code)
+							expect(doc.orderNum).eql(orderNum)
 							//expect(doc.address).eql(address)
-						//	expect(doc.link).eql(link)
-						//	expect(doc.tags).eql(tags)
-						//})
+							expect(doc.link).eql(link)
+							expect(doc.tags).eql(tags)
+						})
 						let a='10',
 						b='2',		 
 						s = "Hi Hello World!";
