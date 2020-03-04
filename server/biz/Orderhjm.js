@@ -3,7 +3,9 @@ const schema = require('../../db/Orderhjm'),
 	__ = require('underscore')
 
 const config = {
-	schema
+	schema,
+	updatables: ['code', 'orderNum',  'link',   'tags'],
+	searchables: ['code', 'orderNum', 'tags']
 }
 
 const addIn = {

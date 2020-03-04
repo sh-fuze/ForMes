@@ -34,19 +34,19 @@ describe('TexTrade', function () {
 
 	describe('biz - 业务',()=>{
 
-		const code = '1001'
+		let  code = '1001'
 			const ID_NOT_EXIST = '5ce79b99da3537277c3f3b66'
 			let schema, testTarget, toCreate;
 			let id, __v;
 
 			beforeEach(function (done) {
 				__v = 0
-				console.log('123');
+				console.log('beforeEach clearDB');
 				return clearDB(done);
 			})
 
 			describe('order -  订单',()=>{
-				const orderNum = 1,
+				let orderNum = 10,
 					//address = 'address',
 					link = 'link',
 					tags = 'tags'
@@ -65,16 +65,18 @@ describe('TexTrade', function () {
 		  
 
 					 
-				/*
+				/**/
 				 
  	 	beforeEach(() => {
-				 	//toCreate = {code}
+				 	toCreate = {code}
 					//Customer
-					//schema = require('../db/Orderhjm');
+					schema = require('../db/Orderhjm');
 					//schema = require('../db/Customer');
-				   // testTarget = require('../server/biz/Orderhjm');
+					testTarget = require('../server/biz/Orderhjm');
+					
+					console.log('beforeEach require ');
 					//testTarget = require('../server/biz/Customer');
-				 })*/
+				 })
 		
 				
 
@@ -93,19 +95,19 @@ describe('TexTrade', function () {
 				*/
 
 
-				it('create', () => {
-					//return testTarget.create({code, orderNum , link, tags})
-					//	.then(doc => {
-					//		return schema.findById(doc.id)
-					//	})
-					//	.then(doc => {
-							//doc = doc.toJSON()
-						//	expect(doc.code).eql(code)
-						//	expect(doc.orderNum).eql(orderNum)
+				it('新增', () => {
+					return testTarget.create({code, orderNum , link, tags})
+						.then(doc => {
+							return schema.findById(doc.id)
+						})
+						.then(doc => {
+							doc = doc.toJSON()
+							expect(doc.code).eql(code)
+							expect(doc.orderNum).eql(orderNum)
 							//expect(doc.address).eql(address)
-						//	expect(doc.link).eql(link)
-						//	expect(doc.tags).eql(tags)
-						//})
+							expect(doc.link).eql(link)
+							expect(doc.tags).eql(tags)
+						})
 						let a='10',
 						b='2',		 
 						s = "Hi Hello World!";
@@ -114,6 +116,96 @@ describe('TexTrade', function () {
 						expect(z).eql(false)
 						//expect('1').eql('1')
 				})
+
+				it('修改', () => {		
+					
+					console.log('修改编号、数量、标签信息')
+
+					code='1002'
+					  orderNum = 1000,
+					//address = 'address',
+					link = 'link2',
+					tags = 'tags2'
+
+
+					return dbSave(schema, {code: 'the code'})
+						.then(doc => {
+							id = doc.id
+							__v = doc.__v
+							return testTarget.update({id, __v, code, orderNum , link, tags})
+						})
+						.then(doc => {
+							//console.log(100)
+							return schema.findById(id)
+						})
+						.then(doc => {
+							doc = doc.toJSON()
+							expect(doc.code).eql(code)
+							//expect(doc.orderNum).eql(200)
+							expect(doc.orderNum).eql(orderNum)
+							//expect(doc.address).eql(address)
+							expect(doc.link).eql(link)
+							//expect(doc.creator).eql(creator)
+							expect(doc.tags).eql(tags)
+							console.log(doc.orderNum)
+
+							console.log(orderNum)
+						})
+				})
+
+
+				 		
+				it('删除', () => {		
+					
+					console.log('删除')
+
+					code='1002'
+				 
+
+					return dbSave(schema, {code: 'the code'})
+						.then(doc => {
+							id = doc.id
+							__v = doc.__v
+							return testTarget.remove(id)
+						})
+						.then(doc => {
+							//console.log(100)
+							return schema.findById(id)
+						})
+						.then(doc => {
+
+							expect(doc).eql(null)
+							 
+
+							console.log('doc is null')
+						})
+				})
+
+
+
+				it('批量新增?未完成', () => {					
+					return testTarget.create({code, orderNum , link, tags})
+						.then(doc => {
+							return schema.findById(doc.id)
+						})
+						.then(doc => {
+							doc = doc.toJSON()
+							expect(doc.code).eql(code)
+							expect(doc.orderNum).eql(orderNum)
+							//expect(doc.address).eql(address)
+							expect(doc.link).eql(link)
+							expect(doc.tags).eql(tags)
+						})
+						let a='10',
+						b='2',		 
+						s = "Hi Hello World!";
+						let z = s.startsWith("Hello");	 
+			
+						expect(z).eql(false)
+						//expect('1').eql('1')
+				})
+
+				 
 
  
 
