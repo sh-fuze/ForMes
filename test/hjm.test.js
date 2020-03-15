@@ -46,11 +46,7 @@ describe('TexTrade', function () {
 			})
 
 			describe('order -  订单',()=>{
-<<<<<<< HEAD
 				let orderNum = 10,
-=======
-				const orderNum = 10,
->>>>>>> a194c6e5b61244116d7a06b806154bc956efba8c
 					//address = 'address',
 					link = 'link',
 					tags = 'tags'
@@ -99,11 +95,8 @@ describe('TexTrade', function () {
 				*/
 
 
-<<<<<<< HEAD
+
 				it('新增', () => {
-=======
-				it('create', () => {
->>>>>>> a194c6e5b61244116d7a06b806154bc956efba8c
 					return testTarget.create({code, orderNum , link, tags})
 						.then(doc => {
 							return schema.findById(doc.id)
@@ -127,7 +120,7 @@ describe('TexTrade', function () {
 
 				it('修改', () => {		
 					
-					console.log('修改编号、数量、标签信息')
+					console.log('修改编号、数量信息')
 
 					code='1002'
 					  orderNum = 1000,
@@ -216,18 +209,7 @@ describe('TexTrade', function () {
 				 
 
  
-
-				/*
-
-				it('code must be unique', () => {
-					return dbSave(schema, toCreate)
-						.then(() => {
-							return testTarget.create(toCreate)
-						})
-						.should.be.rejectedWith()
-				})
-
-				*/
+ 
 
 
 			  }
